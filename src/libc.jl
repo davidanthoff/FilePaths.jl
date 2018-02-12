@@ -1,5 +1,5 @@
 @static if is_apple()
-    immutable Cpasswd
+    struct Cpasswd
         pw_name::Cstring
         pw_passwd::Cstring
         pw_uid::Cint
@@ -13,7 +13,7 @@
         pw_fields::Cint
     end
 elseif is_linux()
-    immutable Cpasswd
+    struct Cpasswd
        pw_name::Cstring
        pw_passwd::Cstring
        pw_uid::Cint
@@ -23,7 +23,7 @@ elseif is_linux()
        pw_shell::Cstring
     end
 else
-    immutable Cpasswd
+    struct Cpasswd
         pw_name::Cstring
         pw_uid::Cint
         pw_gid::Cint
@@ -34,7 +34,7 @@ else
     Cpasswd() = Cpasswd(pointer("NA"), 0, 0, pointer("NA"), pointer("NA"))
 end
 
-immutable Cgroup
+struct Cgroup
     gr_name::Cstring
     gr_passwd::Cstring
     gr_gid::Cint
@@ -42,7 +42,7 @@ end
 
 Cgroup() = Cgroup(pointer("NA"), pointer("NA"), 0)
 
-immutable User
+struct User
     name::String
     uid::UInt64
     gid::UInt64
@@ -91,7 +91,7 @@ function User()
     User(UInt64(uid))
 end
 
-immutable Group
+struct Group
     name::String
     gid::UInt64
 

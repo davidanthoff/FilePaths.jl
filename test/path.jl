@@ -35,7 +35,7 @@ cd(abs(parent(Path(@__FILE__)))) do
         homedir_patched = homedir()
         if is_windows()
             conv_f = isupper(abspath(String(p))[1]) ? uppercase : lowercase
-            homedir_patched = conv_f(homedir_patched[1]) * homedir_patched[2:end]
+            homedir_patched = string(conv_f(homedir_patched[1]), homedir_patched[2:end])
         end
         @test String(relative(p, home())) == relpath(String(p), homedir_patched)
 

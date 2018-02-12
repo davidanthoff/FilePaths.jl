@@ -1,4 +1,4 @@
-immutable WindowsPath <: AbstractPath
+struct WindowsPath <: AbstractPath
     parts::Tuple{Vararg{String}}
     drive::String
     root::String

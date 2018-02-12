@@ -71,7 +71,7 @@ julia> parents(p"~/.julia/v0.6/REQUIRE")
 # Throws
 * `ErrorException`: if `path` doesn't have a parent
 """
-function parents{T<:AbstractPath}(path::T)
+function parents(path::T) where {T <: AbstractPath}
     if hasparent(path)
         return map(1:length(parts(path))-1) do i
             T(parts(path)[1:i])
@@ -196,7 +196,7 @@ Base.real(path::AbstractPath) = Path(realpath(String(path)))
 
 Normalizes a path by removing "." and ".." entries.
 """
-function Base.norm{T<:AbstractPath}(path::T)
+function Base.norm(path::T) where {T <: AbstractPath}
     p = parts(path)
     result = String[]
     rem = length(p)
@@ -243,7 +243,7 @@ end
 
 Creates a relative path from either the current directory or an arbitrary start directory.
 """
-function relative{T<:AbstractPath}(path::T, start::T=T("."))
+function relative(path::T, start::T=T(".")) where {T <: AbstractPath}
     curdir = "."
     pardir = ".."
 

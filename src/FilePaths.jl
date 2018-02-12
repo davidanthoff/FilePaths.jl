@@ -2,8 +2,6 @@ __precompile__()
 
 module FilePaths
 
-using Compat
-
 import Base: ==
 export
     # Types
@@ -28,6 +26,7 @@ export
     extensions,
     exists,
     isabs,
+    isexecutable,
     mode,
     created,
     modified,
@@ -52,13 +51,7 @@ export
     WRITE,
     EXEC
 
-@static if VERSION < v"0.6.0-dev.2514"
-    import Base: isexecutable
-else
-    export isexecutable
-end
-
-@compat abstract type AbstractPath <: AbstractString end
+abstract type AbstractPath <: AbstractString end
 
 # Required methods for subtype of AbstractString
 Base.endof(p::AbstractPath) = endof(String(p))
